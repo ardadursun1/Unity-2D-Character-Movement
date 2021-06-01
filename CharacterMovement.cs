@@ -41,8 +41,6 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private bool IsGrounded() {
-        //return transform.Find("GroundCheck").GetComponent<GroundCheck>().isGrounded;
-
         float extraHeightText = 1f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, extraHeightText, platformLayerMask);
 
