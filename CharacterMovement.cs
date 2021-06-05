@@ -24,7 +24,6 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        // Handle Movement
         float moveSpeed = 8f;
         rigidbody2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (Input.GetKey(KeyCode.A)) {
