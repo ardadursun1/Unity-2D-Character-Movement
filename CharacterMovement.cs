@@ -86,7 +86,7 @@ public class CharacterMovement : MonoBehaviour
 
         animator.SetTrigger("Hurt");
 
-        healthBar.SetHealth(currentHealth);
+        //healthBar.SetHealth(currentHealth);
 
         if(currentHealth <= 0) {
             Die();
