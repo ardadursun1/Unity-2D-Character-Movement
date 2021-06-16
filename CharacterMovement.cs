@@ -20,7 +20,7 @@ public class CharacterMovement : MonoBehaviour
 
     public int maxHealth = 100;
     public int currentHealth;
-    public HealthBar healthBar;
+    //public HealthBar healthBar;
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Start() {
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        //healthBar.SetMaxHealth(maxHealth);
     }
 
     private void Update() {
