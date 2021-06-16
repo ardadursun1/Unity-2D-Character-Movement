@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
 
@@ -37,15 +37,15 @@ public class CharacterMovement : MonoBehaviour
 
         // Handle Jump
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) || IsGrounded() && Input.GetKey(KeyCode.W)) {
-            animator.SetTrigger("takeOf");
+            //animator.SetTrigger("takeOf");
             float jumpVelocity = 7f;
             rigidbody2d.velocity = Vector2.up * jumpVelocity;
         }
 
         if (IsGrounded() == true) {
-            animator.SetBool("isJumping", false);
+            //animator.SetBool("isJumping", false);
         } else {
-            animator.SetBool("isJumping", true);
+            //animator.SetBool("isJumping", true);
         }
 
         if(Time.time >= nextAttackTime) {
@@ -65,18 +65,18 @@ public class CharacterMovement : MonoBehaviour
         rigidbody2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (Input.GetKey(KeyCode.A)) {
             rigidbody2d.velocity = new Vector2(-moveSpeed, rigidbody2d.velocity.y);
-            transform.localScale = new Vector3(-5, 6, 1);
-            animator.SetBool("isRunning", true);
+            transform.localScale = new Vector3(1, 1, 1);
+            //animator.SetBool("isRunning", true);
         } else {
             if (Input.GetKey(KeyCode.D)) {
                 rigidbody2d.velocity = new Vector2(+moveSpeed, rigidbody2d.velocity.y);
-                transform.localScale = new Vector3(5, 6, 1);
-                animator.SetBool("isRunning", true);
+                transform.localScale = new Vector3(-1, 1, 1);
+                //animator.SetBool("isRunning", true);
             } else {
                 // No keys pressed
                 rigidbody2d.velocity = new Vector2(0, rigidbody2d.velocity.y);
                 rigidbody2d.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-                animator.SetBool("isRunning", false);
+                //animator.SetBool("isRunning", false);
             }
         }
     }
@@ -84,7 +84,7 @@ public class CharacterMovement : MonoBehaviour
     void TakeDamage(int damage) {
         currentHealth -= damage;
 
-        animator.SetTrigger("Hurt");
+        //animator.SetTrigger("Hurt");
 
         //healthBar.SetHealth(currentHealth);
 
@@ -105,8 +105,7 @@ public class CharacterMovement : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
     
         foreach(Collider2D enemy in hitEnemies) {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            enemy.GetComponent<Boss>().TakeDamage(attackDamage); 
+            //enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
     }
 
