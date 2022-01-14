@@ -11,15 +11,15 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxCollider2d;
     private Animator animator;
 
-    public Transform attackPoint;
+    /*public Transform attackPoint;
     public LayerMask enemyLayers;
     public float attackRange = 0.5f;
     public int attackDamage = 40;
     public float attackRate = 2f;
-    float nextAttackTime = 0f;
+    float nextAttackTime = 0f;*/
 
-    public int maxHealth = 100;
-    public int currentHealth;
+    /*public int maxHealth = 100;
+    public int currentHealth;*/
     //public HealthBar healthBar;
 
     private void Awake() {
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
         // Handle Jump
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) || IsGrounded() && Input.GetKey(KeyCode.W)) {
-            //animator.SetTrigger("takeOf");
+            //animator.SetBool("isJumping", true);
             float jumpVelocity = 7f;
             rigidbody2d.velocity = Vector2.up * jumpVelocity;
         }
@@ -48,16 +48,16 @@ public class Player : MonoBehaviour
             //animator.SetBool("isJumping", true);
         }
 
-        if(Time.time >= nextAttackTime) {
+        /*if(Time.time >= nextAttackTime) {
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKey(KeyCode.Mouse0)) {
                 Attack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
-        }
+        }*/
 
-        if (Input.GetKeyDown(KeyCode.E)) {
+        /*if (Input.GetKeyDown(KeyCode.E)) {
             TakeDamage(20);
-        }
+        }*/
     }
 
     private void FixedUpdate() {
@@ -80,8 +80,25 @@ public class Player : MonoBehaviour
             }
         }
     }
+    
+    /*void Attack() {
+        animator.SetTrigger("Attack");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+    
+        foreach(Collider2D enemy in hitEnemies) {
+            Debug.Log("Hit" + enemy.name);
+            //enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        }
+    }*/
 
-    void TakeDamage(int damage) {
+    /*void OnDrawGizmosSelected() {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }*/
+
+    /*void TakeDamage(int damage) {
         currentHealth -= damage;
 
         //animator.SetTrigger("Hurt");
@@ -91,31 +108,15 @@ public class Player : MonoBehaviour
         if(currentHealth <= 0) {
             Die();
         }
-    }
+    }*/
 
-    void Die() {
+    /*void Die() {
         animator.SetBool("isDead", true);
 
         //GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-    }
-
-    void Attack() {
-        animator.SetTrigger("Attack");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+    }*/
     
-        foreach(Collider2D enemy in hitEnemies) {
-            //enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-        }
-    }
-
-    void OnDrawGizmosSelected() {
-        if (attackPoint == null)
-            return;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
-
     private bool IsGrounded() {
         float extraHeightText = 0.1f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, extraHeightText, platformLayerMask);
