@@ -18,9 +18,8 @@ public class Player : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0f;*/
 
-    /*public int maxHealth = 100;
-    public int currentHealth;*/
-    //public HealthBar healthBar;
+    public int maxHealth = 100;
+    public int currentHealth;
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -30,7 +29,6 @@ public class Player : MonoBehaviour
 
     void Start() {
         currentHealth = maxHealth;
-        //healthBar.SetMaxHealth(maxHealth);
     }
 
     private void Update() {
@@ -55,9 +53,9 @@ public class Player : MonoBehaviour
             }
         }*/
 
-        /*if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.E)) {
             TakeDamage(20);
-        }*/
+        }
     }
 
     private void FixedUpdate() {
@@ -98,24 +96,22 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }*/
 
-    /*void TakeDamage(int damage) {
+    void TakeDamage(int damage) {
         currentHealth -= damage;
 
         //animator.SetTrigger("Hurt");
 
-        //healthBar.SetHealth(currentHealth);
-
         if(currentHealth <= 0) {
             Die();
         }
-    }*/
+    }
 
-    /*void Die() {
-        animator.SetBool("isDead", true);
+    void Die() {
+        //animator.SetBool("isDead", true);
 
         //GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-    }*/
+    }
     
     private bool IsGrounded() {
         float extraHeightText = 0.1f;
